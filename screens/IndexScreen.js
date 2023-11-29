@@ -1,13 +1,21 @@
-import { FlatList, StyleSheet, Text, View, Button } from "react-native";
-import React, { useState } from "react";
+import { StyleSheet, Text, View, Button, FlatList } from "react-native";
+import React, { useContext } from "react";
+import BlogContext from "../context/BlogContext";
 
 export default function Index() {
-  const [deneme, setDeneme] = useState([]);
+  const blogPosts = useContext(BlogContext);
+
   return (
     <View>
       <Text>IndexScreen</Text>
-      <Button title="deneme" />
-      <FlatList />
+      <Text>IndexScreen</Text>
+      <FlatList
+        item={blogPosts}
+
+        renderItem={({ item }) => {
+          return <Text>{item}</Text>;
+        }}
+      />
     </View>
   );
 }
