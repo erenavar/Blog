@@ -1,22 +1,31 @@
-import { StyleSheet, Text, View, Button, FlatList } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
 import React, { useContext } from "react";
 import { Context } from "../context/BlogContext";
 import { MaterialIcons } from "@expo/vector-icons";
 
 export default function IndexScreen() {
-  const { state, addBlogPost } = useContext(Context);
+  const { state, addBlogPost, deleteBlogPost } = useContext(Context);
 
   return (
     <View>
       <Button title="Add" onPress={addBlogPost} />
       <FlatList
         data={state}
-        keyExtractor={(blogPosts) => blogPosts.title}
+        keyExtractor={(blogPosts) => blogPosts.id}
         renderItem={({ item }) => {
           return (
             <View style={styles.listStyle}>
               <Text style={styles.title}>{item.title}</Text>
-              <MaterialIcons name="delete" size={24} color="black" />
+              <TouchableOpacity onPress={() => deleteBlogPost(item.id)}>
+                <MaterialIcons name="delete" size={24} color="black" />
+              </TouchableOpacity>
             </View>
           );
         }}
