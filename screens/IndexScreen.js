@@ -10,23 +10,29 @@ import React, { useContext } from "react";
 import { Context } from "../context/BlogContext";
 import { MaterialIcons } from "@expo/vector-icons";
 
-export default function IndexScreen() {
+export default function IndexScreen({ navigation }) {
   const { state, addBlogPost, deleteBlogPost } = useContext(Context);
 
   return (
     <View>
       <Button title="Add" onPress={addBlogPost} />
+
       <FlatList
         data={state}
         keyExtractor={(blogPosts) => blogPosts.id}
         renderItem={({ item }) => {
           return (
-            <View style={styles.listStyle}>
-              <Text style={styles.title}>{item.title}</Text>
-              <TouchableOpacity onPress={() => deleteBlogPost(item.id)}>
-                <MaterialIcons name="delete" size={24} color="black" />
-              </TouchableOpacity>
-            </View>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("Show", { id: item.id })}
+            >
+              <View style={styles.listStyle}>
+                <Text style={styles.title}>{item.title}</Text>
+
+                <TouchableOpacity onPress={() => deleteBlogPost(item.id)}>
+                  <MaterialIcons name="delete" size={24} color="black" />
+                </TouchableOpacity>
+              </View>
+            </TouchableOpacity>
           );
         }}
       />
