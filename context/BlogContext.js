@@ -20,6 +20,7 @@ blogReducer = (state, action) => {
 const addBlogPost = (dispatch) => {
   return () => {
     dispatch({ type: "add_blogpost" });
+
   };
 };
 
