@@ -6,6 +6,8 @@ import { Provider } from "./context/BlogContext";
 import ShowScreen from "./screens/ShowScreen";
 import CreateScreen from "./screens/CreateScreen";
 import { AntDesign } from "@expo/vector-icons";
+import { Entypo } from "@expo/vector-icons";
+import EditScreen from "./screens/EditScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -13,7 +15,7 @@ export default function App() {
   return (
     <Provider>
       <NavigationContainer>
-        <Stack.Navigator screenOptions={{ headerTitle: "" }}>
+        <Stack.Navigator screenOptions={{ headerTitle: "Blog App" }}>
           <Stack.Screen
             name="Index"
             component={IndexScreen}
@@ -23,11 +25,21 @@ export default function App() {
                   <AntDesign name="pluscircle" size={24} color="black" />
                 </TouchableOpacity>
               ),
-              headerLeft: () => <Text>Blog App</Text>,
             })}
           />
-          <Stack.Screen name="Show" component={ShowScreen} />
+          <Stack.Screen
+            name="Show"
+            component={ShowScreen}
+            options={({ navigation }) => ({
+              headerRight: () => (
+                <TouchableOpacity onPress={() => navigation.navigate("Edit")}>
+                  <Entypo name="edit" size={24} color="black" />
+                </TouchableOpacity>
+              ),
+            })}
+          />
           <Stack.Screen name="Create" component={CreateScreen} />
+          <Stack.Screen name="Edit" component={EditScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
