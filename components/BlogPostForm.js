@@ -11,17 +11,56 @@ export default function BlogPostForm() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   return (
-    <View>
-      <Text>Subject: </Text>
-      <TextInput value={title} onChangeText={(text) => setTitle(text)} />
-      <Text>Content: </Text>
-      <TextInput value={content} onChangeText={(text) => setContent(text)} />
-      <TextInput value={content} onChangeText={(text) => setContent(text)} />
-      <TouchableOpacity>
-        <Text>Save</Text>
+    <View style={styles.main}>
+      <Text style={styles.label}>Subject: </Text>
+      <TextInput
+        style={styles.input}
+        value={title}
+        onChangeText={(text) => setTitle(text)}
+      />
+      <Text style={styles.label}>Content: </Text>
+      <TextInput
+        style={styles.input}
+        value={content}
+        onChangeText={(text) => setContent(text)}
+      />
+      <TouchableOpacity style={styles.button}>
+        <View style={styles.buttonView}>
+          <Text style={styles.buttonText}>Save</Text>
+        </View>
       </TouchableOpacity>
     </View>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  main: {
+    marginTop: 10,
+  },
+  label: {
+    fontSize: 20,
+    marginLeft: 10,
+  },
+  input: {
+    borderWidth: 1,
+    margin: 10,
+    borderRadius: 20,
+    padding: 10,
+    fontSize: 18,
+    marginBottom: 15,
+  },
+  button: {
+    padding: 30,
+  },
+  buttonView: {
+    backgroundColor: "green",
+    padding: 10,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 20,
+  },
+  buttonText: {
+    color: "white",
+    fontSize: 20,
+  },
+});
