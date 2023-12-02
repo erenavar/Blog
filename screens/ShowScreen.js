@@ -7,7 +7,8 @@ export default function ShowScreen({ route }) {
   const blogPost = state.find((blogPost) => blogPost.id == route.params.id);
   return (
     <View>
-      <Text>{blogPost.id}</Text>
+      <Text>{blogPost.title}</Text>
+      <Text>{blogPost.content}</Text>
     </View>
   );
 }

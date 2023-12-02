@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 
-export default function BlogPostForm() {
+export default function BlogPostForm({ onSubmit }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   return (
@@ -24,7 +24,10 @@ export default function BlogPostForm() {
         value={content}
         onChangeText={(text) => setContent(text)}
       />
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => onSubmit(title, content)}
+      >
         <View style={styles.buttonView}>
           <Text style={styles.buttonText}>Save</Text>
         </View>
