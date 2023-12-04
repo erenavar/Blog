@@ -7,9 +7,11 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 
-export default function BlogPostForm({ onSubmit }) {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+export default function BlogPostForm({ onSubmit, initialValues }) {
+  const [title, setTitle] = useState(initialValues ? initialValues.title : "");
+  const [content, setContent] = useState(
+    initialValues ? initialValues.content : ""
+  );
   return (
     <View style={styles.main}>
       <Text style={styles.label}>Subject: </Text>
