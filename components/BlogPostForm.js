@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 
-export default function BlogPostForm({ onSubmit, initialValues }) {
+export default function BlogPostForm({ onSubmit, initialValues, isEditable }) {
   const [title, setTitle] = useState(initialValues ? initialValues.title : "");
   const [content, setContent] = useState(
     initialValues ? initialValues.content : ""
@@ -31,7 +31,11 @@ export default function BlogPostForm({ onSubmit, initialValues }) {
         onPress={() => onSubmit(title, content)}
       >
         <View style={styles.buttonView}>
-          <Text style={styles.buttonText}>Save</Text>
+          {isEditable ? (
+            <Text style={styles.buttonText}>Update</Text>
+          ) : (
+            <Text style={styles.buttonText}>Save</Text>
+          )}
         </View>
       </TouchableOpacity>
     </View>
