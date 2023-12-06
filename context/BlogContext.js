@@ -20,7 +20,7 @@ blogReducer = (state, action) => {
   }
 };
 
-const addBlogPost = (dispatch) => {
+const addBlogPost = () => {
   return async (title, content, callback) => {
     await jsonserver.post("/blogposts", { title, content });
 
@@ -31,7 +31,9 @@ const addBlogPost = (dispatch) => {
 };
 
 const editBlogPost = (dispatch) => {
-  return (id, title, content, callback) => {
+  return async (id, title, content, callback) => {
+    await jsonserver.put(`/blogposts/${id}`, { title, content });
+
     dispatch({ type: "edit_blogpost", payload: { id, title, content } });
     if (callback) {
       callback();
@@ -47,7 +49,8 @@ const getBlogPosts = (dispatch) => {
 };
 
 const deleteBlogPost = (dispatch) => {
-  return (id) => {
+  return async (id) => {
+    await jsonserver.delete(`/blogposts/${id}`);
     dispatch({ type: "delete_blogpost", payload: id });
   };
 };
